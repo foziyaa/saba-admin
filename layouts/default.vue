@@ -10,7 +10,7 @@
     >
       <!-- Image Above Sidebar Contents -->
       <v-img
-        src="/path-to-your-image.jpg"
+        src="C:/Users/foziya fetudin/saba-admin/assets/sabalogo.png"
         alt="Sidebar Logo"
         class="mx-auto my-4"
         contain
@@ -23,6 +23,7 @@
           v-for="(item, i) in items"
           :key="i"
           :to="item.to"
+          v-if="!item.subItems"
           router
           exact
         >
@@ -33,6 +34,41 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+        <!-- Sub-Items (Expandable List Groups) -->
+        <v-list-group
+          v-for="(item, i) in items"
+          :key="i"
+          v-if="item.subItems"
+          :value="item.expanded"
+        >
+          <template v-slot:activator>
+            <v-list-item>
+              <v-list-item-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content v-if="!miniVariant">
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </template>
+
+          <!-- Sub-Items -->
+          <v-list-item
+            v-for="(subItem, j) in item.subItems"
+            :key="j"
+            :to="subItem.to"
+            router
+            exact
+          >
+            <v-list-item-action>
+              <v-icon>{{ subItem.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content v-if="!miniVariant">
+              <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
       </v-list>
 
       <v-divider></v-divider>
@@ -111,22 +147,48 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Saba Admin'
+      title: 'Saba Admin',
+      items: [
+        {
+          icon: 'mdi-apps',
+          title: 'Dashboard',
+          to: '/'
+        },
+        {
+          icon: 'mdi-account-plus',
+          title: 'Add User',
+          expanded: false,
+          subItems: [
+            { icon: 'mdi-account', title: 'Add Student', to: '/addstudent' },
+            { icon: 'mdi-account', title: 'Add Teacher', to: '/addteacher' },
+            { icon: 'mdi-office-building', title: 'Add Department', to: '/adddepartmet' },
+            { icon: 'mdi-account-group', title: 'Add Program Office', to: '/addprogramoffice' }
+          ]
+        },
+        {
+          icon: 'mdi-bullhorn',
+          title: 'announcement',
+          expanded: false,
+          subItems: [
+            { icon: 'mdi-bullhorn', title: 'super admin announcement', to: '/announcement' },
+            { icon: 'mdi-bullhorn', title: 'departmet announcement', to: '/announcement' },
+            { icon: 'mdi-bullhorn', title: 'program office announcement', to: '/announcement' }
+          ]
+        },
+        {
+          icon: 'mdi-calendar',
+          title: 'calendar',
+          expanded: false,
+          subItems: [
+            { icon: 'mdi-calendar', title: 'super admin announcement', to: '/caladar' },
+            { icon: 'mdi-calendar', title: 'departmet announcement', to: '/caladar' },
+            { icon: 'mdi-calendar', title: 'program office announcement', to: '/caladar' }
+          ]
+        },
+      ]
     };
   }
 };
