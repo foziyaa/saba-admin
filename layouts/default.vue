@@ -10,12 +10,13 @@
     >
       <!-- Image Above Sidebar Contents -->
       <v-img
-        src="C:/Users/foziya fetudin/saba-admin/assets/sabalogo.png"
-        alt="Sidebar Logo"
-        class="mx-auto my-4"
-        contain
-        max-height="100"
-      ></v-img>
+  src="/sabalogo.png"
+  alt="Sidebar Logo"
+  class="mx-auto my-4"
+  contain
+  max-height="100"
+></v-img>
+
 
       <!-- Navigation Items -->
       <v-list>
@@ -165,7 +166,11 @@ export default {
             { icon: 'mdi-account', title: 'Add Student', to: '/addstudent' },
             { icon: 'mdi-account', title: 'Add Teacher', to: '/addteacher' },
             { icon: 'mdi-office-building', title: 'Add Department', to: '/adddepartmet' },
-            { icon: 'mdi-account-group', title: 'Add Program Office', to: '/addprogramoffice' }
+            { icon: 'mdi-account-group', title: 'Add Program Office', to: '/addprogramoffice' },
+            { icon: 'mdi-account-group', title: 'attendanceReportTeacher', to: '/attendanceReport' },
+            { icon: 'mdi-account-group', title: 'assign teachers', to: '/assignteachers' },
+            { icon: 'mdi-account-group', title: 'Mark attendance for teachers', to: '/markteachers' },
+            { icon: 'mdi-account-group', title: 'create schedule', to: '/createschedule' },
           ]
         },
         {
@@ -183,9 +188,8 @@ export default {
           title: 'calendar',
           expanded: false,
           subItems: [
-            { icon: 'mdi-calendar', title: 'super admin announcement', to: '/caladar' },
-            { icon: 'mdi-calendar', title: 'departmet announcement', to: '/caladar' },
-            { icon: 'mdi-calendar', title: 'program office announcement', to: '/caladar' }
+            { icon: 'mdi-calendar', title: 'school calader', to: '/caladar' },
+           
           ]
         },
       ]
